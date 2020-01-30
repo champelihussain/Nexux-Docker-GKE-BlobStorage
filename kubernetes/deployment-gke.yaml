@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nexus-app
+  namespace: default
+  labels:
+   run: nexus-app
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: nexus-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+        labels:
+          run: nexus-app
+    spec:
+      containers:
+      - image: gcr.io/vital-program-266112/nexus-app:v4
+        imagePullPolicy: IfNotPresent
+        name: nexus-app
+        ports:
+        - containerPort: 8081
+          name: nexus-http
+          protocol: TCP
+        resources: {}
+      terminationGracePeriodSeconds: 30

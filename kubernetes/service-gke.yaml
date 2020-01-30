@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nexus-app
+  name: nexus-app
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8081
+    name: nexus-svc
+  selector:
+    run: nexus-app
+  sessionAffinity: ClientIP
