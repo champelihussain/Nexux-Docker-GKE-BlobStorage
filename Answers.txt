@@ -1,0 +1,11 @@
+Build a custom Docker container - 
+All the required files for custom Docker image are kept under Docker folder. It has dockerfile, key.json(gcp service account json key), passwd.sh(to update password of admin user of nexus on startup), run.sh(to trigger execution of nexus startup & password change script)
+
+Kubernetes deploy - 
+YAML files are kept under Kubernetes folder, initiate files to create pod have been kept there along with output files.
+
+Automated script - 
+Automated script is kept in the main directory itself to install required tools & then initiate the deployment.
+
+Continuous integration - theoretical question
+Yes, this is possible with the help of Jenkins and integrating it with Git, with the help of git hooks. Once the new version is updated on Git, post commit hook can help in initiating a Jenkins job which will take care of the deployment to test environment with modified configuration.
